@@ -25,5 +25,5 @@ jobs:  # 아래에 실행할 작업 단위(Job)들을 나열한다. -서로 독�
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      -name: 4.테스트 실행하기
+      - name: 4.테스트 실행하기
         run: python -m pytest -v
