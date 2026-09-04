@@ -1,0 +1,29 @@
+name: 우리집 책장 CI/CD (테스트 + 빌드)
+
+on:
+  push:  # 언제 이 워크플로우를 실행할지 정하는 트리거(총의 방아쇠)
+  pull_request:  # 병합되기 전 미리 검증하는 용도
+
+jobs:  # 아래에 실행할 작업 단위(Job)들을 나열한다. -서로 독립된 가상 컴퓨터(Runner)에서 실행, 병렬
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 이 job안에서 위에서 아래 순서로 실행할 세부 명령돌의 목록, 리스트(-로 시작)이므로 순서가 중요하다.
+      - name: 1.저장소 코드 가져오기
+        uses: actions/checkout@v4
+
+      - name: 2.python 설치하기
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      
+      - name: 3.패키지(라이브러리) 설치하기
+        # uses:처럼 남이 만든 액션과 달리 우리가 직접 셀 명령어를 실행할 때 사용하는것
+        run: |  # |(파이프) 뒤에 여러줄을 쓰면 --> 이 줄을 차례대로 셀에서 실행해라.
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      -name: 4.테스트 실행하기
+        run: python -m pytest -v
