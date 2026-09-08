@@ -61,6 +61,6 @@ jobs:  # 아래에 실행할 작업 단위(Job)들을 나열한다. -서로 독�
         with:
           context: .
           # context: . --> 저장소 루트에 있는 Dockerfile을 기준으로 빌드해라는 뜻
-          push: ture  # 빌드만 하고 끝난 것이 아니라, 위에서 로그인하나 계정으로 Docker Hub에 업로드까지
+          push: true  # 빌드만 하고 끝난 것이 아니라, 위에서 로그인하나 계정으로 Docker Hub에 업로드까지
           tags: ${{ secrets.DOCKER_USERNAME }}/home-library:latest   # 이미지에 붙일 이름표(태그)
           # 계정명/이미지이름:버전
