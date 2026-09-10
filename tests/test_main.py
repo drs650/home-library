@@ -1,10 +1,10 @@
 '''
 home_library/tests/test_main.py
----------------------------------------
+--------------------------------------
 GitHub Actions 실습용 최초 테스트 v5
 - DB, 외부 API(국립중앙도서관 api key) 없이도 통과하는 순수 로직만 검증한다.
-- 검증 대상
-    services/recognition.py의 normalize_isbn() 함수
+- 검증 대상 
+    services/recognition.py 의 normalize_isbn() 함수 
     (유효한 ISBN인지 체크섬으로 확인하는 함수)
 - 이 파일이 GitHub Actions(CI)에서 push할 때마다 자동으로 실행된다.
 '''
@@ -23,4 +23,4 @@ def test_ISBN10_유효한_경우_그대로_반환한다():
     assert normalize_isbn('0-306-40615-2') == '0306406152'
 
 def test_ISBN_체크자리가_X인_경우도_처리한다():
-    assert normalize_isbn('0-8044-2957-x') == '080442957X'
+    assert normalize_isbn('0-8044-2957-x') == '080442957X' # 소문자도 가능
